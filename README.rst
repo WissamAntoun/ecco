@@ -14,6 +14,12 @@
     :target: https://pypi.org/project/ecco
 .. end-badges
 
+WISSAM: I added support for AraGPT2 large and mega:
+
+.. code-block:: python
+
+    import ecco
+    lm = ecco.from_pretrained('aubmindlab/aragpt2-mega', activations=True, use_grover=True)
 
 Ecco is a python library for explaining Natural Language Processing models using interactive visualizations.
 
@@ -54,12 +60,12 @@ To use the project:
 
     # Generate 20 tokens to complete the input text.
     output = lm.generate(text, generate=20, do_sample=True)
-    
+
     # Ecco will output each token as it is generated.
-    
+
     # 'output' now contains the data captured from this run, including the input and output tokens
-    # as well as neuron activations and input saliency values. 
-    
+    # as well as neuron activations and input saliency values.
+
     # To view the input saliency
     output.saliency()
 
@@ -78,14 +84,14 @@ This does the following:
 
     # To view the input saliency explorable
     output.saliency()
-    
+
     # to view input saliency with more details (a bar and % value for each token)
     output.saliency(style="detailed")
-    
+
     # output.activations contains the neuron activation values. it has the shape: (layer, neuron, token position)
-    
+
     # We can run non-negative matrix factorization using run_nmf. We pass the number of factors/components to break down into
-    nmf_1 = output.run_nmf(n_components=10) 
+    nmf_1 = output.run_nmf(n_components=10)
 
     # nmf_1 now contains the necessary data to create the interactive nmf explorable:
     nmf_1.explore()
